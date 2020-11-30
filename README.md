@@ -1,2 +1,5 @@
 # tron-protocol
-Refactored TRON proto files
+
+Refactored proto files from TRON.
+
+The original repo is buggy and chaotic.

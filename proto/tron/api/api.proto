@@ -71,7 +71,7 @@ service Wallet {
   rpc UpdateEnergyLimit(UpdateEnergyLimitContract) returns (TransactionExtention) {}
   rpc ClearContractABI(ClearABIContract) returns (TransactionExtention) {}
   rpc TriggerContract(TriggerSmartContract) returns (TransactionExtention) {}
-  // not a txn type
+  // Note: This is not a txn type
   rpc TriggerConstantContract(TriggerSmartContract) returns (TransactionExtention) {}
 
   rpc ExchangeCreate(ExchangeCreateContract) returns (TransactionExtention) {}
@@ -187,12 +187,13 @@ service Wallet {
   rpc GetTriggerInputForShieldedTRC20Contract(ShieldedTRC20TriggerContractParameters) returns (BytesMessage) {}
 };
 
-// NOTE: All other solidified APIs are useless.
+// NOTE: All other solidity APIs are almost useless.
 service WalletSolidity {
   rpc GetAccount(AccountAddressMessage) returns (Account) {}
   rpc GetNowBlock2(EmptyMessage) returns (BlockExtention) {}
   rpc GetBlockByLatestNum2(NumberMessage) returns (BlockListExtention) {}
   rpc GetTransactionById(BytesMessage) returns (Transaction) {}
+  rpc GetTransactionInfoById(BytesMessage) returns (TransactionInfo) {}
   rpc GetRewardInfo(BytesMessage) returns (NumberMessage) {}
 };
 

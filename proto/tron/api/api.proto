@@ -100,6 +100,10 @@ service Wallet {
   rpc GetAccountNet(AccountAddressMessage) returns (AccountNetMessage) {}
   rpc GetAccountResource(AccountAddressMessage) returns (AccountResourceMessage) {}
 
+  // FLAW: The API is ill-designed. You guys wrap an address in 3 different ways.
+  //rpc GetAccountBalance (AccountBalanceRequest) returns (AccountBalanceResponse) {}
+  //rpc GetBlockBalanceTrace (BlockId) returns (BlockBalanceTrace) {}
+
   rpc GetAssetIssueByAccount(AccountAddressMessage) returns (AssetIssueList) {}
   rpc GetAssetIssueByName(BytesMessage) returns (AssetIssueContract) {}
   rpc GetAssetIssueListByName(BytesMessage) returns (AssetIssueList) {}
@@ -388,4 +392,9 @@ message ShieldedTRC20TriggerContractParameters {
   repeated BytesMessage spend_authority_signature = 2;
   string amount = 3;
   bytes transparent_to_address = 4;
+}
+
+message BlockId {
+  bytes hash = 1;
+  int64 number = 2;
 }

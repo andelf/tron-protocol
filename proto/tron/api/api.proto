@@ -101,8 +101,8 @@ service Wallet {
   rpc GetAccountResource(AccountAddressMessage) returns (AccountResourceMessage) {}
 
   // FLAW: The API is ill-designed. You guys wrap an address in 3 different ways.
-  //rpc GetAccountBalance (AccountBalanceRequest) returns (AccountBalanceResponse) {}
-  //rpc GetBlockBalanceTrace (BlockId) returns (BlockBalanceTrace) {}
+  // rpc GetAccountBalance (AccountBalanceRequest) returns (AccountBalanceResponse) {}
+  // rpc GetBlockBalanceTrace (BlockId) returns (BlockBalanceTrace) {}
 
   rpc GetAssetIssueByAccount(AccountAddressMessage) returns (AssetIssueList) {}
   rpc GetAssetIssueByName(BytesMessage) returns (AssetIssueContract) {}
@@ -189,6 +189,11 @@ service Wallet {
   rpc CreateShieldedContractParametersWithoutAsk(PrivateShieldedTRC20ParametersWithoutAsk)
       returns (ShieldedTRC20Parameters) {}
   rpc GetTriggerInputForShieldedTRC20Contract(ShieldedTRC20TriggerContractParameters) returns (BytesMessage) {}
+
+  // FLAW: The most ugly APIs
+  rpc GetAccountBalance(AccountBalanceRequest) returns (AccountBalanceResponse) {}
+  rpc GetBlockBalanceTrace(BlockId) returns (BlockBalanceTrace) {}
+  rpc GetBurnTrx(EmptyMessage) returns (NumberMessage) {}
 };
 
 // NOTE: All other solidity APIs are almost useless.
@@ -394,7 +399,7 @@ message ShieldedTRC20TriggerContractParameters {
   bytes transparent_to_address = 4;
 }
 
-message BlockId {
-  bytes hash = 1;
-  int64 number = 2;
+message AccountBalanceRequest {
+  BytesMessage account = 1;
+  BlockId block_id = 2;
 }

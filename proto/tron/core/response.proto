@@ -148,6 +148,7 @@ message TransactionInfo {
 
   bytes orderId = 25;
   repeated MarketOrderDetail orderDetails = 26;
+  int64 packingFee = 27;
 }
 
 // Witness
@@ -558,4 +559,29 @@ message AccountResourceMessage {
 
   int64 storageUsed = 21;
   int64 storageLimit = 22;
+}
+
+message AccountBalanceResponse {
+  int64 balance = 1;
+  BlockId block_id = 2;
+}
+
+message TransactionBalanceTrace {
+  message Operation {
+    // rename from operation_identifier
+    int64 nonce = 1;
+    bytes address = 2;
+    int64 amount = 3;
+  }
+
+  bytes txn_hash = 1;
+  repeated Operation operation = 2;
+  string type = 3;
+  string status = 4;
+}
+
+message BlockBalanceTrace {
+  BlockId block_id = 1;
+  int64 timestamp = 2;
+  repeated TransactionBalanceTrace traces = 3;
 }

@@ -41,6 +41,7 @@ message SmartContract {
         Function = 2;
         Event = 3;
         Fallback = 4;
+        Receive = 5;
       }
       message Param {
         bool indexed = 1;
@@ -78,7 +79,7 @@ message SmartContract {
   int64 origin_energy_limit = 8;
   // unused
   bytes code_hash = 9;
-  bytes trx_hash = 10;
+  bytes txn_hash = 10;
 }
 
 message Vote {
@@ -91,4 +92,9 @@ message Note {
   string payment_address = 2;
   bytes rcm = 3;  // random 32 byte
   bytes memo = 4;
+}
+
+message BlockId {
+  bytes hash = 1;
+  int64 number = 2;
 }

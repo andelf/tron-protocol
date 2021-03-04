@@ -1,3 +1,5 @@
+// All builtin transaction types.
+
 syntax = "proto3";
 package protocol;
 

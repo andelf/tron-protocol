@@ -5,16 +5,19 @@ import "tron/core/common.proto";
 import "tron/core/chain.proto";
 import "tron/core/contract.proto";
 
+// `Block` with block id
 message BlockExtention {
   repeated TransactionExtention transactions = 1;
   BlockHeader block_header = 2;
   bytes blockid = 3;
 }
 
+// List of `BlockExtention`s
 message BlockListExtention {
   repeated BlockExtention block = 1;
 }
 
+// Broadcast response
 message TransactionReturn {
   enum response_code {
     SUCCESS = 0;
@@ -37,6 +40,7 @@ message TransactionReturn {
   bytes message = 3;
 }
 
+// `Transaction` with transaction id, constant result, and `TransactionReturn`
 message TransactionExtention {
   Transaction transaction = 1;
   bytes txid = 2;  // transaction id = sha256(transaction.raw_data)
